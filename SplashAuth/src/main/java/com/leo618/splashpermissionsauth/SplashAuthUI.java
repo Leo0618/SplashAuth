@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * function:权限校验启动页
+ * function:权限校验
  * <p>1.调用launch启动检查
  * <p>2.复写onActivityResult方法，根据resultCode获取结果状态
  * <p>  {@link android.app.Activity#RESULT_OK} :全部授权成功；{@link android.app.Activity#RESULT_CANCELED} :全部授权未成功；
