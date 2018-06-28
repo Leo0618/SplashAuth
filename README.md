@@ -41,13 +41,3 @@
 	            Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
 	        }
 	    }
-
-# Note #
-
-1. 如需考虑混淆，请加入如下：
-
-		-dontwarn android.support.**
-		-keep class android.support.v4.** { *; }
-		-keep public class * extends android.support.v4.**
-		-keep public class * extends android.app.Fragment
-		-keep public class com.leo618.splashpermissionsauth_sample.MainActivity{*;}
