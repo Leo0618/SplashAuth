@@ -19,7 +19,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    api 'com.leo618:MPermission:0.0.3'
+    implementation 'com.android.support:appcompat-v7:27+'
 }
 apply from: './bintray.gradle'

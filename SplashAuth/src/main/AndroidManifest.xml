@@ -1,5 +1,4 @@
-<manifest package="com.leo618.splashpermissionsauth">
-
-    <application />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.leo618.splashpermissionsauth">
 
 </manifest>

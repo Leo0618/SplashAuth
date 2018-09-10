@@ -3,7 +3,7 @@ publish {
     userOrg = 'bytehit'
     groupId = 'com.leo618'
     artifactId = 'SplashAuth'
-    publishVersion = '0.0.2'
+    publishVersion = '0.0.3'
     desc = 'SplashAuth'
     website = 'https://github.com/Leo0618/SplashAuth'
 }
