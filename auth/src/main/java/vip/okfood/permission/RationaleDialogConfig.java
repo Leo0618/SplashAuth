@@ -1,4 +1,4 @@
-package com.leo618.splashpermissionsauth;
+package vip.okfood.permission;
 
 import android.app.Dialog;
 import android.content.Context;

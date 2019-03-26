@@ -6,10 +6,13 @@
 
 1. 添加依赖 
 
-		implementation 'com.leo618:SplashAuth:0.0.3'
+
+		implementation 'vip.okfood.auth:1.0.0'
+
 
 2. 声明权限，在manifest中声明需要授权的权限。 举个栗子如下:
-	
+
+
 	    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -18,12 +21,15 @@
 
 3. 项目manifest中添加提示对话框组件
 
-	 	<activity
-            android:name="com.leo618.splashpermissionsauth.SplashAuthUI"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/SplashPermissionsAuthThemeForSplash" />
 
-4. 使用栗子如下(共有三种使用姿势)：
+        <activity
+            android:name="vip.okfood.permission.SplashAuthUI"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/permission_splash_auth_ui_theme" />
+            
+
+4. 使用例子如下(共有三种使用方法)：
+
 
         public class MainActivity extends AppCompatActivity {
 

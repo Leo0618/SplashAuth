@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.leo618.splashpermissionsauth_sample">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="vip.okfood.auth_sample">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,8 +14,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.leo618.splashpermissionsauth_sample.MainActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,9 +26,9 @@
 
         <!--授权页面-->
         <activity
-            android:name="com.leo618.splashpermissionsauth.SplashAuthUI"
+            android:name="vip.okfood.permission.SplashAuthUI"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/SplashPermissionsAuthThemeForSplash" />
+            android:theme="@style/permission_splash_auth_ui_theme" />
     </application>
 
 </manifest>

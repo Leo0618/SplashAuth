@@ -1,1 +1,1 @@
-include ':app', ':SplashAuth'
+include ':app', ':auth'

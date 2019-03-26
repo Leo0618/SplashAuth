@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="SplashPermissionsAuthThemeForSplash" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="permission_splash_auth_ui_theme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorBackground">@android:color/transparent</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>

@@ -1,13 +1,16 @@
-package com.leo618.splashpermissionsauth;
+package vip.okfood.permission;
 
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 
@@ -32,13 +35,8 @@ import java.util.List;
  * </ol>
  * Created by Leo on 2017/11/21.
  */
+@SuppressWarnings("ToArrayCallWithZeroLengthArrayArgument")
 public class SplashAuthUI extends AppCompatActivity implements MPermission.PermissionCallbacks {
-    /** a message explaining why the application needs this set of permissions */
-    public static String MSG_HINT_FUNCTIONS     = "请授权以获取更完善的体验";
-    /** go settings and open permissions manually */
-    public static String MSG_BUTTON_TXT_GO_OPEN = "去开启";
-    /** quit current permissions auth. */
-    public static String MSG_BUTTON_TXT_GO_QUIT = "退出";
 
     /**
      * 校验授权状态
@@ -100,8 +98,8 @@ public class SplashAuthUI extends AppCompatActivity implements MPermission.Permi
         return result;
     }
 
-    private static final int CODE_REQ_INIT_PERS = 0x101;
-    private String[] mPermissions;
+    private static final int      CODE_REQ_INIT_PERS = 1001;
+    private              String[] mPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,26 +135,60 @@ public class SplashAuthUI extends AppCompatActivity implements MPermission.Permi
     }
 
     @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {}
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        //已经使用注解处理
+    }
+
+    public static final String TXT_Title              = "提示";
+    public static final String TXT_MSG_DENIED         = "请进入设置修改应用权限，以保证正常使用";
+    /** a message explaining why the application needs this set of permissions */
+    public static       String MSG_HINT_FUNCTIONS     = "请授权以获取更完善的体验";
+    /** go settings and open permissions manually */
+    public static       String MSG_BUTTON_TXT_GO_OPEN = "去开启";
+    /** quit current permissions auth. */
+    public static       String MSG_BUTTON_TXT_GO_QUIT = "退出";
+
+    private static final int CODE_GO_SETTING = 1000;
 
     @SuppressWarnings("deprecation")
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
-        new MPermissionSettingsDialog.Builder(this)
-                .setPositiveButton(SplashAuthUI.MSG_BUTTON_TXT_GO_OPEN)
+        new AlertDialog.Builder(this)
+                .setTitle(TXT_Title)
+                .setMessage(TXT_MSG_DENIED)
+                .setPositiveButton(SplashAuthUI.MSG_BUTTON_TXT_GO_OPEN, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivityForResult(intent, CODE_GO_SETTING);
+                    }
+                })
                 .setNegativeButton(SplashAuthUI.MSG_BUTTON_TXT_GO_QUIT, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         handleAfterPermissions(false);
                     }
-                }).build().show();
+                }).create().show();
+        //                new MPermissionSettingsDialog.Builder(this)
+        //                        .setPositiveButton(SplashAuthUI.MSG_BUTTON_TXT_GO_OPEN)
+        //                        .setNegativeButton(SplashAuthUI.MSG_BUTTON_TXT_GO_QUIT, new DialogInterface.OnClickListener() {
+        //                            @Override
+        //                            public void onClick(DialogInterface dialog, int which) {
+        //                                dialog.dismiss();
+        //                                handleAfterPermissions(false);
+        //                            }
+        //                        }).build().show();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         //从设置应用详情页返回
-        if(requestCode == MPermissionSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
+        if(requestCode == CODE_GO_SETTING) {
             checkInitPermissions();
         }
     }

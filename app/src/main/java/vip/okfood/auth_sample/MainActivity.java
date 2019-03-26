@@ -1,4 +1,4 @@
-package com.leo618.splashpermissionsauth_sample;
+package vip.okfood.auth_sample;
 
 import android.Manifest;
 import android.content.Intent;
@@ -7,7 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.leo618.splashpermissionsauth.SplashAuthUI;
+
+import vip.okfood.permission.SplashAuthUI;
 
 /**
  * function: 测试授权页面
